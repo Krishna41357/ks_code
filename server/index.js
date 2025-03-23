@@ -4,15 +4,13 @@ const http = require("http");
 const {Server} = require("socket.io");
 require("dotenv").config();
 const cors = require("cors");
-app.use(cors({
-    origin:["https://ks-code-client.vercel.app/"]
-}));
+app.use(cors);
 app.use(express.json());
 
 const server = http.createServer(app);
 const io = new Server(server);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.node.env.PORT || 5000;
 
 const userSocketMap = {}   // making this to match a single socket id with a single username so that 1 person remains in 1 room at a time only
 const getAllConnectedClients = (roomId)=>{
