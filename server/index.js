@@ -46,11 +46,6 @@ io.on("connection",(socket)=>{
      socket.on('sync-code',({socketId , code})=>{
          io.to(socketId).emit("code-change",{code}); // so that new user gets the code runing in the room
     })//io.to is used bcoz user himself has to see the change
-     socket.on('disconnecting',()=>{
-    const rooms = [...socket.rooms]
-    rooms.forEach((roomId)=>{
-        socket.in(roomId).emit('disconnected',{socketId:socket.id,username:userSocketMap[socket.id]})
-    })
     socket.on('disconnecting',()=>{ //  bbroadcasting the disconnected user
         const rooms = [...socket.rooms]
         rooms.forEach((roomId)=>{
@@ -59,7 +54,6 @@ io.on("connection",(socket)=>{
     })
     delete userSocketMap[socket.id];
     socket.leave();
-})
 })
 
 
