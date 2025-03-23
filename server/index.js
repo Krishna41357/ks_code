@@ -4,9 +4,7 @@ const http = require("http");
 const {Server} = require("socket.io");
 require("dotenv").config();
 const cors = require("cors");
-app.use(cors({
-    origin:["https://ks-code-client.vercel.app/"]
-}));
+
 app.use(express.json());
 
 const server = http.createServer(app);
