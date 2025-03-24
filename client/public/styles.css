@@ -1,0 +1,219 @@
+@font-face{
+  font-family: "harry-porter";
+  src: url("../midnight-minutes-font/MidnightMinutes-RpKRl.otf");
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  background: black;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+canvas {
+  position: absolute;
+  top:0;
+  left:0;
+  z-index: -1;
+}
+
+/* h1{
+  position: relative;
+  margin: 0;
+  color: #fff;
+  z-index: 1;
+  overflow: hidden;
+}
+h1:before{
+  content: ;
+  position: absolute;
+  left: 120%;
+  width: 120%;
+  height: 100%;
+  background:linear-gradient(90deg, transparent 0% , #000 5%,#000 100% );
+  animation: animate 5.5s linear forwards;
+}
+@keyframes animate{
+  0%
+  {
+    left: 110%;
+  }
+  100%
+  {
+    left:-20%
+  }
+} */
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  flex-direction: row;
+}
+.button {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 15px;
+  margin-left:20px;
+  margin-right:20px;
+  word-spacing: normal;
+  letter-spacing: 5px;
+  border: 1px solid white;
+  background: black;
+  cursor: pointer;
+  
+}
+
+.confetti-button {
+  outline: none;
+  border:none;
+  cursor: pointer;
+  width:100%;
+  height: 100%;
+  border-radius: 30px;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: 'Lato', sans-serif;
+  color:#fff;
+  text-align: center;
+  background: #24cfaa;
+  box-shadow: 3px 3px 8px #303030a4,
+              3px 3px 8px #2c2c2c7e;
+  transition: 0.5s;
+  box-shadow: 10px 10px 20px #ff0000;
+}
+.confetti-button:hover {
+  background:#2fdbb6;
+}
+.confetti-button:active {
+  background:#1da88a;
+}
+.button-wrapper {
+  position: relative;
+  width:200px;
+  height:60px;
+}
+.button-wrapper canvas {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+
+.container {
+  text-align: center;
+}
+
+button {
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  color: white;
+  background-color: #09a6be;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #007b8e;
+}
+
+/* Popup */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.popup-content {
+  background-color: hsl(0, 47%, 61%);
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  animation: popupAppear 0.5s ease-out forwards;
+  transform: scale(0);
+  opacity: 0;
+}
+
+@keyframes popupAppear {
+  to {
+      transform: scale(1);
+      opacity: 1;
+  }
+}
+
+.popup h2 {
+  margin: 0 0 15px;
+  font-size: 2rem;
+}
+
+.popup p {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.popup.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .popup-content {
+      width: 80%;
+      padding: 20px;
+  }
+
+  button {
+      font-size: 1rem;
+      padding: 10px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .popup-content {
+      width: 90%;
+      padding: 15px;
+  }
+
+  button {
+      font-size: 0.9rem;
+      padding: 8px 15px;
+  }
+
+}
+@media(max-width:480px){
+  .logo{
+    top: 20vh;
+  }
+}
+
+
