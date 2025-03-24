@@ -44,7 +44,7 @@ function Home() {
         <div className="col-12 col-md-6">
           <div 
   className="card shadow-sm p-2 mb-5 bg-primary rounded" 
-  style={{ boxShadow: "0px 0px 10px rgba(0, 123, 255, 0.6)" }}
+  style={{ boxShadow: "0px 0px 25px 8px rgba(0, 123, 255, 0.8)" }}
 >
             <div className="card-body text-center bg-dark">
               <img
