@@ -46,12 +46,12 @@ function Home() {
   className="card shadow-sm p-2 mb-5 bg-secondary rounded" 
   style={{ boxShadow: "0px 0px 25px 8px rgba(0, 123, 255, 0.8)" }}
 >
-            <div className="card-body text-center bg-dark">
+            <div className="card-body text-center bg-black">
               <img
-                src="/favicon.ico"
+                src="/codester-logo.jpg"
                 alt="Logo"
                 className="img-fluid mx-auto d-block"
-                style={{ maxWidth: "250px" }}
+                style={{ maxWidth: "200px" }}
               />
               <hr style={{color:"white"}} ></hr>
               <h4 className="card-title text-light mb-4">Enter the Room ID</h4>
