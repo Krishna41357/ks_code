@@ -10,7 +10,7 @@ const server = http.createServer(app);
 const io = new Server(server);
   
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 10000;
 
 const userSocketMap = {}   // making this to match a single socket id with a single username so that 1 person remains in 1 room at a time only
 const getAllConnectedClients = (roomId)=>{
