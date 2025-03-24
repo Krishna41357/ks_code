@@ -7,11 +7,8 @@ app.use(cors);
 app.use(express.json());
 
 const server = http.createServer(app);
-const io = new Server(server,{
-    cors: {
-      origin: "https://ks-code-client.vercel.app/",
-      methods: ["GET", "POST"],
-    }});
+const io = new Server(server);
+  
 
 const PORT = process.env.PORT || 5000;
 
