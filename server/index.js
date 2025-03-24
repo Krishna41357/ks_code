@@ -2,7 +2,6 @@ const express = require("express");
 const app = express();
 const http = require("http");
 const {Server} = require("socket.io");
-require("dotenv").config();
 const cors = require("cors");
 app.use(cors);
 app.use(express.json());
