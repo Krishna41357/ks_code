@@ -94,7 +94,7 @@ function EditorPage() {
         {/* Client panel */}
         <div className="col-md-2 bg-dark text-light d-flex flex-column">
           <img
-            src="/favicon.ico"
+            src="/codester-logo.jpg"
             alt="Logo"
             className="img-fluid mx-auto"
             style={{ maxWidth: "150px", marginTop: "8px" }}
@@ -123,7 +123,7 @@ function EditorPage() {
 
         {/* Editor panel */}
         
-        <div className="col-md-10 text-light d-flex flex-column">
+        <div className="col-md-10 mt-4 text-light d-flex flex-column">
           <Editor
             socketRef={socketRef}
             roomId={roomId}
