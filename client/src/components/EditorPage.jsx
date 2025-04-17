@@ -161,16 +161,30 @@ function EditorPage() {
             <button className="btn btn-success w-100 mb-2" onClick={copyRoomId}>
               Copy Room ID
             </button>
-            <button className="btn btn-danger w-100" onClick={leaveRoom}>
+            <button className="btn btn-danger mb-3 w-100" onClick={leaveRoom}>
               Leave Room
             </button>
           </div>
         </div>
 
-        {/* Editor panel */}
-        
-        <div className="col-md-10 text-light d-flex flex-column">
-          <Editor
+         {/* Editor panel */}
+         <div className="col-md-10 text-light d-flex flex-column">
+          {/* Language selector */}
+          <div className="bg-dark p-2 d-flex justify-content-end">
+            <select
+              className="form-select w-auto"
+              value={selectedLanguage}
+              onChange={(e) => setSelectedLanguage(e.target.value)}
+            >
+              {LANGUAGES.map((lang) => (
+                <option key={lang} value={lang}>
+                  {lang}
+                </option>
+              ))}
+            </select>
+          </div>
+
+                   <Editor
             socketRef={socketRef}
             roomId={roomId}
             onCodeChange={(code) => {
@@ -198,7 +212,7 @@ function EditorPage() {
           bottom: 0,
           left: 0,
           right: 0,
-          height: isCompileWindowOpen ? "30vh" : "0", // true = 30vh , false = 0
+          height: isCompileWindowOpen ? "30vh" : "0",
           transition: "height 0.3s ease-in-out",
           overflowY: "auto",
           zIndex: 1040,
@@ -224,6 +238,7 @@ function EditorPage() {
         </pre>
       </div>
     </div>
+    
   );
 }
 
