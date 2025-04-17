@@ -170,11 +170,14 @@ function EditorPage() {
          {/* Editor panel */}
          <div className="col-md-10 text-light d-flex flex-column">
           {/* Language selector */}
+          
           <div className="bg-dark p-2 d-flex justify-content-end">
+            
             <select
-              className="form-select w-auto"
+              className="form-select w-auto "
               value={selectedLanguage}
               onChange={(e) => setSelectedLanguage(e.target.value)}
+              style={{backgroundColor: " #0d6efd",color: "white"}}
             >
               {LANGUAGES.map((lang) => (
                 <option key={lang} value={lang}>
@@ -183,7 +186,6 @@ function EditorPage() {
               ))}
             </select>
           </div>
-
                    <Editor
             socketRef={socketRef}
             roomId={roomId}
