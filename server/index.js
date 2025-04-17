@@ -2,10 +2,18 @@ const express = require("express");
 const app = express();
 const http = require("http");
 const {Server} = require("socket.io");
+require("dotenv").config();
+const cors = require("cors");
+app.use(cors({
+    origin:["https://ks-code-client.vercel.app/"]
+}));
+app.use(express.json());
+
 const server = http.createServer(app);
 const io = new Server(server);
+  
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 10000;
 
 const userSocketMap = {}   // making this to match a single socket id with a single username so that 1 person remains in 1 room at a time only
 const getAllConnectedClients = (roomId)=>{
@@ -42,7 +50,7 @@ io.on("connection",(socket)=>{
     rooms.forEach((roomId)=>{
         socket.in(roomId).emit('disconnected',{socketId:socket.id,username:userSocketMap[socket.id]})
     })
-    socket.on('disconnecting',()=>{ //  broadcasting the disconnected user
+    socket.on('disconnecting',()=>{ //  bbroadcasting the disconnected user
         const rooms = [...socket.rooms]
         rooms.forEach((roomId)=>{
             socket.in(roomId).emit('disconnected',{socketId:socket.id,username:userSocketMap[socket.id]})
@@ -51,9 +59,8 @@ io.on("connection",(socket)=>{
     delete userSocketMap[socket.id];
     socket.leave();
 })
-})
 
 
-server.listen(PORT, ()=>{
-    console.log("server is running")
-})
+server.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server running on port ${PORT}`);
+});
