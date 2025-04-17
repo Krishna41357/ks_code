@@ -12,8 +12,23 @@ import {
 import { toast } from "react-hot-toast";
 import axios from "axios";
 
+const LANGUAGES = [
+  "py",
+  "java",
+  "cpp",
+  "js",
+  "c",
+  "ruby",
+  "php"
+ 
+];
+
 function EditorPage() {
   const [clients, setClients] = useState([]);
+  const [output, setOutput] = useState("");
+  const [isCompileWindowOpen, setIsCompileWindowOpen] = useState(false);
+  const [isCompiling, setIsCompiling] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState("cpp");
 
   const codeRef = useRef(null);
 
@@ -86,15 +101,46 @@ function EditorPage() {
   const leaveRoom = async () => {
     navigate("/");
   };
+  const runCode = async () => {
+    setIsCompiling(true);
+     const payload = {
+      language : selectedLanguage,
+      code : codeRef.current, 
+     }
+     try{
+      const {data } = await axios.post("https://ks-compiler.onrender.com/run",payload);
+      setOutput(data.output); //output will be in data.output
+      setIsCompiling(false);
+  }
+  catch(err) {
+    console.log(err);
+   if(err){
+    const errmsg =
+    err?.response?.data?.err?.error || // main error
+    err?.response?.data?.error ||      // fallback
+    "Something went wrong";
+    setOutput(errmsg); // set the output to the error message
+    setIsCompiling(false);
+   }
+    else{
+      setOutput("Something went wrong");
+      setIsCompiling(false);
+    }
+   
+  };
+  }
+  const toggleCompileWindow = () => {
+    setIsCompileWindowOpen(!isCompileWindowOpen);
+  };
 
 
   return (
     <div className="container-fluid vh-100 d-flex flex-column">
       <div className="row flex-grow-1">
         {/* Client panel */}
-        <div className="col-md-2 bg-dark text-light d-flex flex-column">
+        <div className="col-md-2 bg-black text-light d-flex flex-column">
           <img
-            src="/favicon.ico"
+            src="/codester-logo.jpg"
             alt="Logo"
             className="img-fluid mx-auto"
             style={{ maxWidth: "150px", marginTop: "8px" }}
@@ -123,7 +169,20 @@ function EditorPage() {
 
         {/* Editor panel */}
         
-        <div className="col-md-10 text-light d-flex flex-column">
+        <div className="col-md-10 mt- text-light d-flex flex-column">
+          <div className="bg-dark p-2 d-flex justify-content-end">
+            <span className="me-4 mt-2 ">Language:</span>
+            <select
+            className="form-select w-auto"
+            value={selectedLanguage}
+            onChange={(e)=>setSelectedLanguage(e.target.value)}>
+               {LANGUAGES.map((lang) => (
+                <option key={lang} value={lang}>
+                  {lang}
+                </option>
+              ))}
+            </select>
+          </div>
           <Editor
             socketRef={socketRef}
             roomId={roomId}
@@ -133,9 +192,51 @@ function EditorPage() {
           />
           </div>
         </div>
-      </div>
+        {/* Compiler toggle button */}
+      <button
+        className="btn btn-primary position-fixed bottom-0 end-0 m-3"
+        onClick={toggleCompileWindow}
+        style={{ zIndex: 1050 }}
+      >
+        {isCompileWindowOpen ? "Close Compiler" : "Open Compiler"}
+      </button>
 
-     
+      {/* Compiler section */}
+      <div
+        className={`bg-dark text-light p-3 ${
+          isCompileWindowOpen ? "d-block" : "d-none"
+        }`}
+        style={{
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: isCompileWindowOpen ? "30vh" : "0",
+          transition: "height 0.3s ease-in-out",
+          overflowY: "auto",
+          zIndex: 1040,
+        }}
+      >
+        <div className="d-flex justify-content-between align-items-center mb-3">
+          <h5 className="m-0">Compiler Output ({selectedLanguage})</h5>
+          <div>
+            <button
+              className="btn btn-success me-2"
+              onClick={runCode}
+              disabled={isCompiling}
+            >
+              {isCompiling ? "Compiling..." : "Run Code"}
+            </button>
+            <button className="btn btn-secondary" onClick={toggleCompileWindow}>
+              Close
+            </button>
+          </div>
+        </div>
+        <pre className="bg-secondary p-3 rounded">
+          {output || "Output will appear here after compilation"}
+        </pre>
+      </div>
+    </div>
   );
 }
 

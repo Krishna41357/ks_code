@@ -43,12 +43,12 @@ function Home() {
       <div className="row justify-content-center align-items-center min-vh-100">
         <div className="col-12 col-md-6">
           <div className="card shadow-sm p-2 mb-5 bg-secondary rounded">
-            <div className="card-body text-center bg-dark">
+            <div className="card-body text-center bg-black">
               <img
-                src="/favicon.ico"
+                src="/codester-logo.jpg"
                 alt="Logo"
                 className="img-fluid mx-auto d-block"
-                style={{ maxWidth: "250px" }}
+                style={{ maxWidth: "200px" }}
               />
               <hr style={{color:"white"}} ></hr>
               <h4 className="card-title text-light mb-4">Enter the Room ID</h4>
