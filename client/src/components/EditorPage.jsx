@@ -198,7 +198,7 @@ function EditorPage() {
           bottom: 0,
           left: 0,
           right: 0,
-          height: isCompileWindowOpen ? "30vh" : "0",
+          height: isCompileWindowOpen ? "30vh" : "0", // true = 30vh , false = 0
           transition: "height 0.3s ease-in-out",
           overflowY: "auto",
           zIndex: 1040,
