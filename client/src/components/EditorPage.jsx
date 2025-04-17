@@ -177,7 +177,7 @@ function EditorPage() {
               className="form-select w-auto "
               value={selectedLanguage}
               onChange={(e) => setSelectedLanguage(e.target.value)}
-              style={{backgroundColor: " #0d6efd",color: "white"}}
+              style={{backgroundColor:"#0d6efd" , color: "white"}}
             >
               {LANGUAGES.map((lang) => (
                 <option key={lang} value={lang}>
